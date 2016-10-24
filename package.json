@@ -1,0 +1,30 @@
+{
+  "name": "hasaki",
+  "version": "0.0.1",
+  "author": "",
+  "scripts": {
+    "hasaki": "node bin/hasaki.js",
+    "lint": "eslint --ext .js bin config"
+  },
+  "engines": {
+    "node": ">= 4"
+  },
+  "dependencies": {
+    "bluebird": "^3.4.6",
+    "chalk": "^1.1.3",
+    "commander": "^2.9.0",
+    "hasaki-core": "^1.0.0",
+    "inquirer": "^1.2.2"
+  },
+  "pre-commit": ["lint"],
+  "devDependencies": {
+    "eslint": "^3.7.1",
+    "eslint-config-elemefe": "^0.1.1",
+    "pre-commit": "^1.1.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "license": "MIT"
+}

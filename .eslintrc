@@ -1,0 +1,9 @@
+{
+  "parserOptions": {
+    "ecmaVersion": 6
+  },
+  "extends": "elemefe",
+  "rules": {
+    "no-console": [0]
+  }
+}
