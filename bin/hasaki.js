@@ -12,7 +12,7 @@ program
     console.log(chalk.cyan.bold('  Examples:'));
     console.log('');
     console.log(chalk.cyan.bold('    $ hasaki init [-y]'));
-    console.log(chalk.cyan.bold('    $ hasaki create <page-name> <rules> -p [project-path]'));
+    console.log(chalk.cyan.bold('    $ hasaki create <page-name> <rules>'));
     console.log(chalk.cyan.bold('    $ hasaki --help'));
     console.log('');
   })

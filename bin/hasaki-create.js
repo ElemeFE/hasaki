@@ -6,19 +6,20 @@ const chalk = require('chalk');
 const Hasaki = require('hasaki-core');
 const exists = require('fs').existsSync;
 
+const findConfigFile = require('../utils/findConfigFile');
+
 const CWD = process.cwd();
 
+const projectPath = findConfigFile(CWD) || './';
+
 let pageName;
-let projectPath;
 let rules = [];
 
 program
   .usage('<page-name> <rules>')
-  .option('-p, --path [projectPath]', 'use given path')
   .action((pn, rs) => {
     pageName = pn;
     rules = rs;
-    projectPath = program.path || './';
   })
   .on('--help', () => {
     console.log(chalk.cyan.bold('  Examples:'));
