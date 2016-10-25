@@ -6,7 +6,7 @@ const chalk = require('chalk');
 const Hasaki = require('hasaki-core');
 const exists = require('fs').existsSync;
 
-const findConfigFile = require('../utils/findConfigFile');
+const findConfigFile = require('../lib/find-config-file');
 
 const CWD = process.cwd();
 
@@ -24,16 +24,15 @@ program
   .on('--help', () => {
     console.log(chalk.cyan.bold('  Examples:'));
     console.log();
-    console.log(chalk.cyan.bold('    $ generate new pages used given rules'));
     console.log(chalk.cyan.bold('    $ hasaki create Home rule1,rule2'));
     console.log();
   })
   .parse(process.argv);
 
 const initHelp = () => {
-  console.log(chalk.cyan.bold('please init your project'));
+  console.log(chalk.cyan.bold('  Please init your project:'));
   console.log();
-  console.log(chalk.cyan.bold('    $ hasaki init [path] [-y]'));
+  console.log(chalk.cyan.bold('    $ hasaki init [-y]'));
   console.log();
 };
 
