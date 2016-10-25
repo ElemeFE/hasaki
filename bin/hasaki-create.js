@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-
+'use strict';
 const program = require('commander');
 const path = require('path');
 const chalk = require('chalk');

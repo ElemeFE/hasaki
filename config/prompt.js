@@ -1,3 +1,4 @@
+'use strict';
 const initialPromptList = [{
   type: 'input',
   message: 'what is your project name?',
