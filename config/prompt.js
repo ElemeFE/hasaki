@@ -13,7 +13,7 @@ const initialPromptList = [{
   type: 'input',
   message: 'what is your hasaki placeholder?',
   name: 'placeholder',
-  default: ''
+  default: '__name'
 }];
 
 module.exports = initialPromptList;
