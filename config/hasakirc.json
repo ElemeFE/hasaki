@@ -1,13 +1,13 @@
 {
-  "name": "hasaki",
+  "name": "a hasaki project",
   "templateRootPath": "./_template",
-  "placeholder": "",
+  "placeholder": "__name",
   "rules": [
     {
       "containerRule": {
         "extension": "js",
         "suffix": "",
-        "prefix": "_",
+        "prefix": "",
         "path": "./container/",
         "template": "container.js"
       }
@@ -25,7 +25,7 @@
         "extension": "js",
         "suffix": "saga",
         "path": "./saga/",
-        "content": "haha"
+        "content": "This is content"
       }
     },
     {
