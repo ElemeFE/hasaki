@@ -1,6 +1,6 @@
 {
-  "name": "hasaki",
-  "version": "0.0.4",
+  "name": "hasaki-cli",
+  "version": "0.0.1",
   "description": "A file generator for easy writing your application.",
   "preferGlobal": true,
   "bin": {
