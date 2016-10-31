@@ -7,7 +7,7 @@ A simple file generator for all exist projects.
 Prerequisites: Node.js ( >= 5.8.0 preferred ). 4.x should also work, but we haven't test it yet.
 
 ```bash
-$ npm install -g hasaki
+$ npm install -g hasaki-cli
 ```
 
 ### Usage
