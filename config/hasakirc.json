@@ -1,39 +1,5 @@
 {
   "name": "a hasaki project",
   "templateRootPath": "./_template",
-  "placeholder": "__name",
-  "rules": [
-    {
-      "containerRule": {
-        "extension": "js",
-        "suffix": "",
-        "prefix": "",
-        "path": "./container/",
-        "template": "container.js"
-      }
-    },
-    {
-      "actionRule": {
-        "extension": "js",
-        "suffix": "",
-        "path": "./actions/",
-        "template": "action.js"
-      }
-    },
-    {
-      "sagaRule": {
-        "extension": "js",
-        "suffix": "saga",
-        "path": "./saga/",
-        "content": "This is content"
-      }
-    },
-    {
-      "rule3": [
-        "actionRule",
-        "sagaRule",
-        "containerRule"
-      ]
-    }
-  ]
+  "rules": []
 }

@@ -71,7 +71,14 @@ const writeConfigFile = (contents, dir, done) => {
 
 const downloadAndGenerate = template => {
   const tmp = os.tmpdir() + '/hasaki-template-' + uid()
-  var spinner = ora('downloading template')
+  const spinner = ora('downloading template')
+
+  if (!template) {
+    console.log();
+    console.log(chalk.green('hasaki inited!'));
+    return;
+  }
+
   spinner.start()
   download(template, tmp, { clone: false }, function (err) {
     spinner.stop()
