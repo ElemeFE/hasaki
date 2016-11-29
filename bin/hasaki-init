@@ -8,6 +8,12 @@ const readFile = Promise.promisify(require('fs').readFile);
 const writeFile = Promise.promisify(require('fs').writeFile);
 const exists = require('fs').existsSync;
 const chalk = require('chalk');
+const os = require('os');
+const uid = require('uid');
+const ora = require('ora');
+const download = require('download-git-repo');
+const rm = require('rimraf').sync;
+const generate = require('../lib/generate');
 
 const initialPromptList = require('../config/prompt');
 
@@ -16,6 +22,8 @@ const CWD = process.cwd();
 const defaultConfigPath = '../config/hasakirc.json';
 
 const projectRootPath = './';
+
+const repo = require('../config/repo');
 
 program
   .option('-y, --yes', 'use default config')
@@ -31,15 +39,19 @@ const readConfigFile = () => readFile(path.resolve(__dirname, defaultConfigPath)
   console.log(chalk.yellow('Error reading file', e));
 });
 
-const writeConfigContents = (hasakircPath, contents) => {
+const writeConfigContents = (hasakircPath, contents, done) => {
   writeFile(hasakircPath, contents).then(() => {
-    console.log(chalk.yellow('hasaki inited!'));
+    done();
+    // console.log();
+    // console.log(chalk.yellow('hasaki inited!'));
   }).catch((e) => {
-    console.log(chalk.yellow('Error reading file', e));
+    done(e);
+    // console.log();
+    // console.log(chalk.yellow('Error reading file', e));
   });
 };
 
-const writeConfigFile = (contents, dir) => {
+const writeConfigFile = (contents, dir, done) => {
   const configDir = dir || path.resolve(CWD, projectRootPath);
   const hasakircPath = path.resolve(configDir, '.hasakirc');
 
@@ -50,11 +62,32 @@ const writeConfigFile = (contents, dir) => {
       name: 'cover'
     }]).then((answers) => {
       if (!answers.cover) process.exit(1);
-      else writeConfigContents(hasakircPath, contents);
+      else writeConfigContents(hasakircPath, contents, done);
     });
   } else {
-    writeConfigContents(hasakircPath, contents);
+    writeConfigContents(hasakircPath, contents, done);
   }
+};
+
+const downloadAndGenerate = template => {
+  const tmp = os.tmpdir() + '/hasaki-template-' + uid()
+  var spinner = ora('downloading template')
+  spinner.start()
+  download(template, tmp, { clone: false }, function (err) {
+    spinner.stop()
+    process.on('exit', function () {
+      rm(tmp)
+    })
+    if (err) console.error('Failed to download repo ' + template + ': ' + err.message.trim())
+
+    const destDirName = '_template';
+    const to = path.resolve('./');
+    generate(destDirName, tmp, to, function (err) {
+      if (err) console.error(err)
+      console.log()
+      console.log(chalk.green('√ Generated', destDirName))
+    })
+  })
 };
 
 if (program.yes) {
@@ -68,11 +101,13 @@ if (program.yes) {
       } catch (e) {
         console.log(chalk.yellow('init .hasakirc file error: ', e.stack));
       }
-      writeConfigFile(config, null, 2);
+      writeConfigFile(config, null, function() {
+        downloadAndGenerate(repo[answers.language]);
+      });
     });
   });
 }
 
 process.on('exit', () => {
-  // console.log()
+  console.log()
 });
