@@ -77,18 +77,16 @@ Our default `.hasakirc` looks like
 ```json
 {
   "name": "a hasaki project",
-  "templateRootPath": "./_template",
-  "placeholder": "__name",
   "rules": [
     {
-      "vue-component": {
-        "describe": "generate a vue component file",
+      "rule-name": {
+        "describe": "this is a rule example (you must modify the templates below to fit your need)",
         "templates": [
           {
-            "source": "./_template/component/Hello.vue",
-            "target": "./src/components",
+            "source": "",
+            "target": "",
             "keepFileName": false,
-            "placeholder": "Hello"
+            "placeholder": ""
           }
         ]
       }
