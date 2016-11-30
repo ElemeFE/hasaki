@@ -1,5 +1,18 @@
 {
   "name": "a hasaki project",
-  "templateRootPath": "./_template",
-  "rules": []
+  "rules": [
+    {
+      "rule-name": {
+        "describe": "this is a rule example (you must modify the templates below to fit your need)",
+        "templates": [
+          {
+            "source": "",
+            "target": "",
+            "keepFileName": false,
+            "placeholder": ""
+          }
+        ]
+      }
+    }
+  ]
 }

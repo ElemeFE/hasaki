@@ -53,8 +53,6 @@ write or modify the whole file manually. Make sure the content type should be js
 
 - `name` Project name, default value `a hasaki project`.
 
-- `templateRootPath` A path value. It's useful when you use `template` field in `rules`, default value `./_template`.
-
 - `rules` type Array
   - `ruleName` type Object, A name for your current rule.
 
