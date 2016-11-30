@@ -7,19 +7,14 @@ const initialPromptList = [{
 }, {
   type: 'list',
   name: 'language',
-  message: 'which language do you use?',
-  choices: ['react', 'vue', 'angular2'],
+  message: 'which language (template) do you use?',
+  choices: ['no template', 'react (dva)', 'vue', 'angular2'],
   default: 0
 }, {
   type: 'input',
   message: 'what is your hasaki template root path?',
   name: 'templateRootPath',
   default: './_template'
-}, {
-  type: 'input',
-  message: 'what is your hasaki placeholder?',
-  name: 'placeholder',
-  default: '__name'
 }];
 
 module.exports = initialPromptList;

@@ -18,7 +18,7 @@ In your project root directory
 $ hasaki init
 ```
 
-If you want to use default configuration, you can use 
+If you want to use default configuration, you can use
 
 ```bash
 $ hasaki init -y
@@ -34,7 +34,7 @@ $ hasaki -h
 
 #### Create files
 
-After get your `.hasakirc` file, simply run 
+After get your `.hasakirc` file, simply run
 
 ```bash
 $ hasaki create <page-name> <rule-name><,rule-name2>...
@@ -55,27 +55,22 @@ write or modify the whole file manually. Make sure the content type should be js
 
 - `templateRootPath` A path value. It's useful when you use `template` field in `rules`, default value `./_template`.
 
-- `placeholder` You can set this value to add a placeholder in your template file. hasaki will look for your template
-file and replace all the `placeholder` to the `<page-name>` which you've set in `hasaki create <page-name> <rule-name>`. The default 
-value is `__name`。 In some case, you can set it to `__Name` or `__NAME`。 When placeholder's first letter is uppercase
-the `<page-name>`'s first letter will set to uppercase. So it's easy to see `__NAME` will make the whole `<page-name>` become uppercase.
-
 - `rules` type Array
   - `ruleName` type Object, A name for your current rule.
-    - `extension` the extension for the target file.
-    
-    - `suffix` the suffix for the target file.
-   
-    - `prefix` the prefix for the target file.
-        
-    - `path` the path where the target file will be.
-        
-    - `template` the path for your template file. If it's value is not `""`, `content` field will be ignore. 
-        
-    - `content` default content for target file contain. 
 
-  - `ruleGroup` type Array. You can put your single rule into an array, and named it a new rule. This is very useful
-when you want to generate multi files.
+    - `describe` type String, describe for your rule. (optional)
+    - `templates` type Array
+
+      - `source` type String, source template file or directory.
+      - `target` type String, target directory.
+      - `keepFileName` type Boolean.
+      - `placeholder` type String, use to translate `<your-placeholder-value>` to `<page-name>` (optional)
+
+More about `placeholder`:  
+You can set this value to add a placeholder in your template file. hasaki will look for your template
+file and replace all the `placeholder` to the `<page-name>` which you've set in `hasaki create <page-name> <rule-name>`. The default
+value is `__name`。 In some case, you can set it to `__Name` or `__NAME`。 When placeholder's first letter is uppercase
+the `<page-name>`'s first letter will set to uppercase. So it's easy to see `__NAME` will make the whole `<page-name>` become uppercase.
 
 ## Default .hasakirc
 
@@ -88,36 +83,17 @@ Our default `.hasakirc` looks like
   "placeholder": "__name",
   "rules": [
     {
-      "containerRule": {
-        "extension": "js",
-        "suffix": "",
-        "prefix": "_",
-        "path": "./container/",
-        "template": "container.js"
+      "vue-component": {
+        "describe": "generate a vue component file",
+        "templates": [
+          {
+            "source": "./_template/component/Hello.vue",
+            "target": "./src/components",
+            "keepFileName": false,
+            "placeholder": "Hello"
+          }
+        ]
       }
-    },
-    {
-      "actionRule": {
-        "extension": "js",
-        "suffix": "",
-        "path": "./actions/",
-        "template": "action.js"
-      }
-    },
-    {
-      "sagaRule": {
-        "extension": "js",
-        "suffix": "saga",
-        "path": "./saga/",
-        "content": "haha"
-      }
-    },
-    {
-      "rule3": [
-        "actionRule",
-        "sagaRule",
-        "containerRule"
-      ]
     }
   ]
 }
