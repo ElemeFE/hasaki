@@ -4,6 +4,7 @@ const program = require('commander');
 const Promise = require('bluebird');
 const path = require('path');
 const inquirer = require('inquirer');
+const fs = require('fs');
 const readFile = Promise.promisify(require('fs').readFile);
 const writeFile = Promise.promisify(require('fs').writeFile);
 const exists = require('fs').existsSync;
@@ -40,14 +41,9 @@ const readConfigFile = () => readFile(path.resolve(__dirname, defaultConfigPath)
 });
 
 const writeConfigContents = (hasakircPath, contents, done) => {
-  writeFile(hasakircPath, contents).then(() => {
-    done();
-    // console.log();
-    // console.log(chalk.yellow('hasaki inited!'));
-  }).catch((e) => {
-    done(e);
-    // console.log();
-    // console.log(chalk.yellow('Error reading file', e));
+  fs.writeFile(hasakircPath, contents, (err) => {
+    if (err) throw err;
+    if (typeof done === 'function') done();
   });
 };
 
@@ -98,7 +94,10 @@ const downloadAndGenerate = template => {
 };
 
 if (program.yes) {
-  readConfigFile().then(contents => writeConfigFile(contents, null, 2));
+  readConfigFile().then(contents => writeConfigFile(contents, null, () => {
+    console.log();
+    console.log(chalk.green('hasaki inited!'));
+  }));
 } else {
   inquirer.prompt(initialPromptList).then((answers) => {
     readConfigFile().then((contents) => {
