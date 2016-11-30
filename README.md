@@ -47,7 +47,7 @@ this new rule a *rule group*.
 ## .hasakirc
 
 `.hasakirc` is `hasaki` config file, it will automatically generate when you use `hasaki init` . But you can also
-write or modify the whole file manually. Make sure the content type should be json.
+write or modify the whole file manually. Make sure the content type should be **json**.
 
 ### configuration fields
 
@@ -63,6 +63,8 @@ write or modify the whole file manually. Make sure the content type should be js
       - `target` type String, target directory.
       - `keepFileName` type Boolean.
       - `placeholder` type String, use to translate `<your-placeholder-value>` to `<page-name>` (optional)
+      - `suffix` the suffix for the target file.
+      - `prefix` the prefix for the target file.
 
 More about `placeholder`:  
 You can set this value to add a placeholder in your template file. hasaki will look for your template
